@@ -379,8 +379,8 @@ class _RegisterPenjualPageState extends State<RegisterPenjualPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        
-                        context.read<SingUpBloc>().add(SingUpPenjualEvent(
+                        if(state is !SingUpLoading){
+                          context.read<SingUpBloc>().add(SingUpPenjualEvent(
                             email: emailController.text,
                             noHp: phoneController.text,
                             alamat: addressController.text,
@@ -390,6 +390,8 @@ class _RegisterPenjualPageState extends State<RegisterPenjualPage> {
                             imageUrl: _selectedImage,
                             jamBuka: selectedOpeningTime!,
                             jamTutup: selectedClosingTime!,));
+                        }
+                        
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(

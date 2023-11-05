@@ -17,6 +17,19 @@ class SingUpEvent extends Equatable {
   @override
   List<Object> get props => [email, username, password, noHp, alamat];
 }
+class SingUpEventPembeli extends SingUpEvent {
+  
+
+  const SingUpEventPembeli(
+      {required super.email,
+      required super.noHp,
+      required super.alamat,
+      required super.password,
+      required super.username,});
+
+  @override
+  List<Object> get props => [email, username, password, noHp, alamat];
+}
 
 class SingUpPenjualEvent extends SingUpEvent {
   final String hari;

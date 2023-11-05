@@ -13,7 +13,7 @@ part 'sing_up_state.dart';
 
 class SingUpBloc extends Bloc<SingUpEvent, SingUpState> {
   SingUpBloc() : super(SingUpInitial()) {
-    on<SingUpEvent>((event, emit) async {
+    on<SingUpEventPembeli>((event, emit) async {
       try {
         emit(SingUpLoading());
         await supabase.auth.signUp(

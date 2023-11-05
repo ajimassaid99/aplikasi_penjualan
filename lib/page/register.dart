@@ -265,7 +265,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<SingUpBloc>().add(SingUpEvent(
+                        context.read<SingUpBloc>().add(SingUpEventPembeli(
                             email: emailController.text,
                             noHp: phoneController.text,
                             alamat: addressController.text,

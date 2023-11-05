@@ -222,7 +222,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   void launchWhatsApp() async {
     final url = Uri.https(
-        'wa.me', '+6281362280934'); // Ganti dengan nomor WhatsApp yang sesuai
+        'wa.me', '+6281362280934'); 
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
