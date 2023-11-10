@@ -221,12 +221,10 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void launchWhatsApp() async {
-    final url = Uri.https(
-        'wa.me', '+6281362280934'); 
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Tidak dapat membuka WhatsApp';
+    final url = Uri.https('wa.me', '+6281362280934');
+
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 }

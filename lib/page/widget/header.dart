@@ -62,7 +62,7 @@ class HeaderWidget extends StatelessWidget {
                   future: _getUsername(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(); // You can display a loading indicator
+                      return const CircularProgressIndicator(); // You can display a loading indicator
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else {
@@ -70,16 +70,16 @@ class HeaderWidget extends StatelessWidget {
                         children: [
                           Text(
                             "Hello ${snapshot.data}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Text(
+                          const Text(
                             "Produk Terbaik Yang Kita Beri Untuk Pembeli",
                             style: TextStyle(
                               fontSize: 14,
