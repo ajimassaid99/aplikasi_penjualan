@@ -12,14 +12,11 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
       try {
         emit(LogoutLoading());
         await supabase.auth.signOut();
-        print("JALAN0");
         final preferences = await SharedPreferences.getInstance();
-        print("JALAN1");
         preferences.remove('userRole');
         preferences.remove('userphone');
         preferences.remove('userName');
         preferences.remove('userAddres');
-        print("JALAN2");
         emit(LogoutSucces());
       } catch (e) {
         emit(LogoutError());

@@ -1,35 +1,33 @@
 class Product {
-  final String id;
+  final int id;
   final String name;
   final String image;
-  final double price;
-  final bool isAvailabel;
+  final int price;
+  final bool isAvailable;
 
-  Product({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.price,
-    required this.isAvailabel
-  });
+  Product(
+      {required this.id,
+      required this.name,
+      required this.image,
+      required this.price,
+      required this.isAvailable});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      image: json['image'] as String,
-      price: (json['price'] as num).toDouble(),
-      isAvailabel:  json['isAvailabe']
-    );
+        id: json['id'],
+        name: json['nama_produk'],
+        image: json['url_image'],
+        price: json['harga_produk'],
+        isAvailable: json['isTersedia']);
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': name,
-      'image': image,
-      'price': price,
-      'isAvailabel':isAvailabel
+      'nama_produk': name,
+      'url_image': image,
+      'harga_produk': price,
+      'isTersedia': isAvailable
     };
   }
 }

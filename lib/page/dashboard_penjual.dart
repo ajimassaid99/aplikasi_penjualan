@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/logout/logout_bloc.dart';
 import 'package:solusi_penjualan_pangan/page/home_penjual.dart';
-import 'package:solusi_penjualan_pangan/page/welcome.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:solusi_penjualan_pangan/page/welcome.dart';
 
 class DashboardPenjualPage extends StatefulWidget {
   const DashboardPenjualPage({super.key});
@@ -19,7 +19,8 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
     PersistentTabController _controller;
 
     _controller = PersistentTabController(initialIndex: 0);
-    return BlocConsumer<LogoutBloc, LogoutState>(
+
+       return BlocConsumer<LogoutBloc, LogoutState>(
       listener: (context, state) {
         if (state is LogoutError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -40,7 +41,7 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
       builder: (context, state) {
         if (state is LogoutLoading) {
           return Container(
-            color: const Color(0xFF22692D),
+            color: Colors.white,
             child: const Center(child: CircularProgressIndicator()),
           );
         }
@@ -59,7 +60,7 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
           hideNavigationBarWhenKeyboardShows:
               true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(
-            borderRadius: BorderRadius.circular(50.0),
+            borderRadius: BorderRadius.circular(30.0),
             colorBehindNavBar: const Color(0xFF22692D),
           ),
           popAllScreensOnTapOfSelectedTab: true,

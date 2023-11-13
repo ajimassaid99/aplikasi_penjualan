@@ -1,85 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:solusi_penjualan_pangan/model/produk.dart';
 
-class ProductCardView extends StatelessWidget {
-  const ProductCardView({
-    Key? key,
-    required this.product,
-    this.imageAlignment = Alignment.bottomCenter,
-  }) : super(key: key);
-
+class ProductItem extends StatefulWidget {
   final Product product;
-  final Alignment imageAlignment;
+  final NumberFormat formatter =
+      NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
+
+  ProductItem({Key? key, required this.product}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final priceValue = product.price;
+  _ProductItemState createState() => _ProductItemState();
+}
 
-    return SizedBox(
-      width: 150,
+class _ProductItemState extends State<ProductItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Tersedia:'),
+              Text("Tersedia"),
               Switch(
-                value: product.isAvailabel,
+                value: widget.product.isAvailable,
+                activeColor:
+                    widget.product.isAvailable ? Colors.green : Colors.red,
                 onChanged: (value) {
+                  setState(() {
+                    // widget.product.isAvailable = value;
+                  });
                 },
               ),
             ],
           ),
-          Stack(
-            alignment: AlignmentDirectional.bottomStart,
-            children: [
-              SizedBox(
-                height: 100,
-                width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  product.image,
-                  alignment: imageAlignment,
-                  fit: BoxFit.cover,
-                ),
+          Expanded(
+            // Gunakan Expanded di sini
+            child: SizedBox(
+              width: 110,
+              child: Image.network(
+                widget.product.image,
+                fit: BoxFit.cover,
               ),
-              if (product
-                  .isAvailabel) // Show a badge if the product is available
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  color: Colors.green,
-                  child: const Text(
-                    'Available',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            child: Text(
-              '${product.name}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: false,
-              style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
-          Row(
-            children: [
-              Text(
-                '$priceValue €',
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-                softWrap: false,
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber,
-                    ),
-              ),
-            ],
+          const SizedBox(height: 10),
+          Text(
+            widget.product.name,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 5),
+          Text(
+            widget.formatter.format(widget.product.price),
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
+          ),
         ],
       ),
     );

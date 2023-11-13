@@ -25,6 +25,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               'userName', res.user?.userMetadata?['username'] ?? '');
           preferences.setString(
               'userAddres', res.user?.userMetadata?['alamat'] ?? '');
+          preferences.setString('userId', res.user?.id ?? '');
+          preferences.setString('userEmail', res.user?.email ?? '');
+          preferences.setString(
+              'userImage', res.user?.userMetadata?['url_image'] ?? '');
           emit(LoginSucces());
         } else {
           await supabase.auth.signOut();
@@ -44,6 +48,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: event.password,
         );
         if (res.user?.userMetadata?['role'] == 'penjual') {
+          final response = await supabase
+              .from('toko')
+              .select('id')
+              .eq('user_id', res.user?.id ?? '')
+              .execute();
+          print("WKWKWKs ${response.data}");
           final preferences = await SharedPreferences.getInstance();
           preferences.setString(
               'userRole', res.user?.userMetadata?['role'] ?? '');
@@ -53,6 +63,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               'userName', res.user?.userMetadata?['username'] ?? '');
           preferences.setString(
               'userAddres', res.user?.userMetadata?['alamat'] ?? '');
+          preferences.setString('userId', res.user?.id ?? '');
+          preferences.setString('userEmail', res.user?.email ?? '');
+          preferences.setString(
+              'userImage', res.user?.userMetadata?['url_image'] ?? '');
+          preferences.setInt('userToko', response.data[0]['id'] ?? '');
           emit(LoginSucces());
         } else {
           await supabase.auth.signOut();

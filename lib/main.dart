@@ -4,6 +4,7 @@ import 'package:solusi_penjualan_pangan/bloc/login/login_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/logout/logout_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/lupa_Password/lupa_password_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/register/sing_up_bloc.dart';
+import 'package:solusi_penjualan_pangan/bloc/tambah_product/tambah_produk_bloc.dart';
 import 'package:solusi_penjualan_pangan/page/welcome.dart'; // Import your 'PenjualPage'
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<LogoutBloc>(
             create: (context) => LogoutBloc(),
+          ),
+          BlocProvider<TambahProdukBloc>(
+            create: (context) => TambahProdukBloc(),
           ),
         ],
         child: MaterialApp(

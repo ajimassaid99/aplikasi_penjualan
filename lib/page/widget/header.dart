@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:solusi_penjualan_pangan/page/profile_penjual.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({super.key});
@@ -35,23 +36,30 @@ class HeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape
-                        .circle, // Membuat Container berbentuk lingkaran
-                    border: Border.all(
-                      color: Colors.white, // Warna border putih
-                      width: 3.0, // Lebar border
+                InkWell(
+                  onTap: () {
+                    // Navigate to the profile page when the image is tapped
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => UserDetailView()),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 3.0,
+                      ),
                     ),
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      "assets/username.png", // Ganti dengan path gambar Anda
-                      height: 50,
-                      width: 50,
-                      color: Colors.white, // Tinggi gambar
-                      fit: BoxFit
-                          .fitHeight, // Sesuaikan gambar ke dalam lingkaran
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/username.png",
+                        height: 50,
+                        width: 50,
+                        color: Colors.white,
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
                 ),
