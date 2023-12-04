@@ -23,7 +23,6 @@ class _TambahProdukPageState extends State<TambahProdukPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<TambahProdukBloc, TambahProdukState>(
       listener: (context, state) {
-        print(state);
         if (state is TambahProdukSuccesed) {
           Navigator.push(
             context,

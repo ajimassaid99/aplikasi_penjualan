@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/logout/logout_bloc.dart';
 import 'package:solusi_penjualan_pangan/page/home_penjual.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:solusi_penjualan_pangan/page/pesan_masuk.dart';
+import 'package:solusi_penjualan_pangan/page/pesanan.dart';
+import 'package:solusi_penjualan_pangan/page/riwayat_pesanan.dart';
+import 'package:solusi_penjualan_pangan/page/saran.dart';
 import 'package:solusi_penjualan_pangan/page/welcome.dart';
 
 class DashboardPenjualPage extends StatefulWidget {
@@ -20,7 +24,7 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
 
     _controller = PersistentTabController(initialIndex: 0);
 
-       return BlocConsumer<LogoutBloc, LogoutState>(
+    return BlocConsumer<LogoutBloc, LogoutState>(
       listener: (context, state) {
         if (state is LogoutError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -114,9 +118,13 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
   List<Widget> _buildScreens() {
     return [
       const HomePenjual(),
-      const HomePenjual(),
-      const HomePenjual(),
-      const HomePenjual()
+      PesananList(),
+      PesananMasukNotification(
+        jenisPembayaran: 'RP 2000000',
+        jumlahPesanan: 2,
+        onProses: () {},
+      ),
+      SaranList()
     ];
   }
 }
