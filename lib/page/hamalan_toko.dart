@@ -136,7 +136,7 @@ class _StorePageState extends State<StorePage> {
                               onPressed: () {
                                 context
                                     .read<KeranjangBloc>()
-                                    .add(decrement(id: menu.id));
+                                    .add(decrement(id: menu.id,product: menu));
                                 setState(() {
                                   isBolehChekout = true;
                                 });
@@ -164,7 +164,7 @@ class _StorePageState extends State<StorePage> {
                               onPressed: () {
                                 context
                                     .read<KeranjangBloc>()
-                                    .add(Increment(id: menu.id));
+                                    .add(Increment(id: menu.id,product: menu));
                               },
                             ),
                           ],

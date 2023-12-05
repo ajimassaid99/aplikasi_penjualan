@@ -9,14 +9,28 @@ class KeranjangEvent extends Equatable {
 
 class Increment extends KeranjangEvent {
   final int id;
-  const Increment({required this.id});
+  final ProductModel product;
+  const Increment({required this.id, required this.product});
 
   @override
   List<Object> get props => [];
 }
+
 class decrement extends KeranjangEvent {
   final int id;
-  const decrement({required this.id});
+  final ProductModel product;
+  const decrement({required this.id, required this.product});
+
+  @override
+  List<Object> get props => [];
+}
+
+class Pesan extends KeranjangEvent {
+  final String metode;
+  final int jumlah_bayar;
+  final List<Map<String, dynamic>> data;
+  const Pesan(
+      {required this.metode, required this.jumlah_bayar, required this.data});
 
   @override
   List<Object> get props => [];

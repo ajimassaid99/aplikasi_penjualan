@@ -9,6 +9,8 @@ class KeranjangState extends Equatable {
 
 class KeranjangInitial extends KeranjangState {}
 class KeranjangLoading extends KeranjangState {}
+class KeranjangFailed extends KeranjangState {}
+class KeranjangSuccessed extends KeranjangState {}
 
 class StoreKeranjang extends KeranjangState {
    final List<Map<String,dynamic>> data;

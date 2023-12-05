@@ -229,7 +229,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                         border: OutlineInputBorder(),
                       ),
                       onChanged: (text) {
-                        passwordController.text = text;
+                        phoneController.text = text;
                       },
                     ),
                     const Padding(

@@ -38,9 +38,9 @@ class PesananBerhasil extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Ubah warna tombol menjadi hijau
+                  primary: Colors.green, 
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero, // Tidak ada border bulat
+                    borderRadius: BorderRadius.zero, 
                   ),
                 ),
                 onPressed: () {

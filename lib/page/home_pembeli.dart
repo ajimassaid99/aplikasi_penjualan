@@ -67,12 +67,12 @@ class _HomePembeliState extends State<HomePembeli> {
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CheckoutPage(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => CheckoutPage(),
+                      //   ),
+                      // );
                     },
                     child: const Text('Edit'))
               ],
