@@ -15,7 +15,7 @@ class TambahProdukBloc extends Bloc<TambahProdukEvent, TambahProdukState> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       try {
         emit(TambahProdukLoading());
-        int idToko = await prefs.getInt("userToko")??0;
+        int idToko = await prefs.getInt("userToko") ?? 0;
         final response = await supabase
             .from('produk')
             .select('id, nama_produk, harga_produk, isTersedia, url_image')
@@ -24,8 +24,6 @@ class TambahProdukBloc extends Bloc<TambahProdukEvent, TambahProdukState> {
 
         // Check if the request was successful (status code 200)
         if (response.status == 200) {
-          print("WKWKWK ${response.data}");
-          // Extract the data from the response
           final data = response.data as List<dynamic>;
 
           // Convert the list of dynamic to a list of Product
@@ -44,8 +42,8 @@ class TambahProdukBloc extends Bloc<TambahProdukEvent, TambahProdukState> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       try {
         emit(TambahProdukLoading());
-        int idToko = await prefs.getInt("userToko")??0;
-        String userId=await prefs.getString("userId")??'0';
+        int idToko = await prefs.getInt("userToko") ?? 0;
+        String userId = await prefs.getString("userId") ?? '0';
 
         final avatarFile = File(event.image);
         final String path = await supabase.storage.from('gambar produk').upload(
@@ -67,7 +65,18 @@ class TambahProdukBloc extends Bloc<TambahProdukEvent, TambahProdukState> {
           }
         }
       } catch (e) {
-        print("WKWKWKWK $e");
+        emit(TambahProdukError(e.toString()));
+      }
+    });
+    on<IsTersediaProdukEvent>((event, emit) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      try {
+        emit(TambahProdukLoading());
+        await supabase
+            .from('produk')
+            .update({'isTersedia': event.isTersedia}).match({'id': event.id});
+        add(LoadProdukEvent());
+      } catch (e) {
         emit(TambahProdukError(e.toString()));
       }
     });

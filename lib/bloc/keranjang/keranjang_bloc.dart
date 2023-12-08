@@ -26,7 +26,8 @@ class KeranjangBloc extends Bloc<KeranjangEvent, KeranjangState> {
             'metode': event.metode,
             'jumlah_bayar': event.jumlah_bayar,
             'status': "menunggu di Proses",
-            'user_id':user_id
+            'user_id':user_id,
+            'toko_id':event.tokoId
           }
         ]).select();
 

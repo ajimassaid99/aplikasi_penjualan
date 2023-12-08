@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:solusi_penjualan_pangan/bloc/tambah_product/tambah_produk_bloc.dart';
 import 'package:solusi_penjualan_pangan/model/produk.dart';
 
 class ProductItem extends StatefulWidget {
@@ -29,7 +31,9 @@ class _ProductItemState extends State<ProductItem> {
                     widget.product.isAvailable ? Colors.green : Colors.red,
                 onChanged: (value) {
                   setState(() {
-                    // widget.product.isAvailable = value;
+                    context.read<TambahProdukBloc>().add(IsTersediaProdukEvent(
+                        id: widget.product.id,
+                        isTersedia: !widget.product.isAvailable));
                   });
                 },
               ),

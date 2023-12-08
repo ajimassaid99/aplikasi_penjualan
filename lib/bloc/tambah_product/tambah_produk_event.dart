@@ -7,10 +7,17 @@ class TambahProdukEvent extends Equatable {
 }
 
 class LoadProdukEvent extends TambahProdukEvent {
-  final String tokoId;
-  const LoadProdukEvent({required  this.tokoId});
+  
+  const LoadProdukEvent();
   @override
-  List<Object?> get props => [tokoId];
+  List<Object?> get props => [];
+}
+class IsTersediaProdukEvent extends TambahProdukEvent {
+  final bool isTersedia;
+  final int id;
+  const IsTersediaProdukEvent({required this.isTersedia, required this.id});
+  @override
+  List<Object?> get props => [];
 }
 class createProdukEvent extends TambahProdukEvent {
   final String image;

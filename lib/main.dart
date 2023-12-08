@@ -6,6 +6,7 @@ import 'package:solusi_penjualan_pangan/bloc/logout/logout_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/lupa_Password/lupa_password_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/register/sing_up_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/riwayat/riwayat_bloc.dart';
+import 'package:solusi_penjualan_pangan/bloc/saran/saran_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/store/store_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/store_detail/store_detail_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/tambah_product/tambah_produk_bloc.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<SingUpBloc>(
             create: (context) => SingUpBloc(),
+          ),
+          BlocProvider<SaranBloc>(
+            create: (context) => SaranBloc(),
           ),
           BlocProvider<RiwayatBloc>(
             create: (context) => RiwayatBloc(),

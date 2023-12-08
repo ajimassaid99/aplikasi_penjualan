@@ -4,59 +4,61 @@ import 'package:solusi_penjualan_pangan/bloc/riwayat/riwayat_bloc.dart';
 import 'package:solusi_penjualan_pangan/model/pesanan.dart';
 import 'package:solusi_penjualan_pangan/page/widget/sidebar.dart';
 
-class PesananList extends StatefulWidget {
-  const PesananList({super.key});
+class PesananListRiwayat extends StatefulWidget {
+  const PesananListRiwayat({super.key});
 
   @override
-  State<PesananList> createState() => _PesananListState();
+  State<PesananListRiwayat> createState() => _PesananListRiwayatState();
 }
 
-class _PesananListState extends State<PesananList> {
+class _PesananListRiwayatState extends State<PesananListRiwayat> {
   void initState() {
     super.initState();
-    context.read<RiwayatBloc>().add(const GetPesananEvent());
+    context.read<RiwayatBloc>().add(const GetPesananRiwayatEvent());
   }
 
   void _updateStatus(int nomorPesanan) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Update Status'),
-        content: const Text('Choose an action:'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              // Dispatch an event to update the status to "Proses"
-              context.read<RiwayatBloc>().add(UpdateStatusEvent(
-                 nomorPesanan,'Dalam Proses',
-              ));
-              Navigator.of(context).pop(); // Close the pop-up
-            },
-            child: const Text('Proses'),
-          ),
-          TextButton(
-            onPressed: () {
-              // Dispatch an event to update the status to "Tolak"
-              context.read<RiwayatBloc>().add(UpdateStatusEvent(
-                nomorPesanan, 'Di Tolak',
-              ));
-              Navigator.of(context).pop(); // Close the pop-up
-            },
-            child: const Text('Tolak'),
-          ),
-        ],
-      );
-    },
-  );
-}
-
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Update Status'),
+          content: const Text('Choose an action:'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Dispatch an event to update the status to "Proses"
+                context.read<RiwayatBloc>().add(UpdateStatusEvent(
+                      nomorPesanan,
+                      'Dikirim',
+                    ));
+                Navigator.of(context).pop(); // Close the pop-up
+              },
+              child: const Text('kirim'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Dispatch an event to update the status to "Tolak"
+                context.read<RiwayatBloc>().add(UpdateStatusEvent(
+                      nomorPesanan,
+                      'Di Batalkan',
+                    ));
+                Navigator.of(context).pop(); // Close the pop-up
+              },
+              child: const Text('Batalkan'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Color getStatusColor(String status) {
     switch (status) {
       case 'Dibatalkan':
         return Colors.red;
-      case 'Diproses':
+      case 'Proses':
+      case 'Dalam Proses':
         return Colors.orange;
       case 'Dikirim':
         return Colors.blue;
@@ -101,8 +103,10 @@ class _PesananListState extends State<PesananList> {
                     Text('Harga: ${pesanan.jumlah_bayar}'),
                   ],
                 ),
-                onTap:() {
-                   _updateStatus(pesanan.nomorPesanan);
+                onTap: () {
+                  if (pesanan.status == 'Dalam Proses') {
+                    _updateStatus(pesanan.nomorPesanan);
+                  }
                 },
                 trailing: Container(
                   padding:
@@ -119,10 +123,9 @@ class _PesananListState extends State<PesananList> {
               );
             },
           ),
-          drawer: Sidebar(), // Anda dapat menambahkan drawer jika diperlukan
+          drawer: Sidebar(),
         );
       },
     );
   }
 }
- 

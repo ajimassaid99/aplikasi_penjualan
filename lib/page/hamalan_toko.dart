@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/keranjang/keranjang_bloc.dart';
-import 'package:solusi_penjualan_pangan/bloc/store/store_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/store_detail/store_detail_bloc.dart';
 import 'package:solusi_penjualan_pangan/page/checkout.dart';
 
@@ -184,7 +183,7 @@ class _StorePageState extends State<StorePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CheckoutPage()));
+                            builder: (context) => CheckoutPage(toko_id: widget.id,)));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

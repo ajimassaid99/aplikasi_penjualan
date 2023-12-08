@@ -28,9 +28,10 @@ class decrement extends KeranjangEvent {
 class Pesan extends KeranjangEvent {
   final String metode;
   final int jumlah_bayar;
+  final int tokoId;
   final List<Map<String, dynamic>> data;
   const Pesan(
-      {required this.metode, required this.jumlah_bayar, required this.data});
+      {required this.metode, required this.jumlah_bayar, required this.data, required this.tokoId});
 
   @override
   List<Object> get props => [];

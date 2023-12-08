@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:solusi_penjualan_pangan/bloc/saran/saran_bloc.dart';
 import 'package:solusi_penjualan_pangan/page/widget/sidebar.dart';
 
-class Saran {
-  final String namaPelanggan;
-  final String saran;
+class SaranList extends StatefulWidget {
+  const SaranList({super.key});
 
-  Saran({
-    required this.namaPelanggan,
-    required this.saran,
-  });
+  @override
+  State<SaranList> createState() => _SaranListState();
 }
 
-List<Saran> daftarSaran = [
-  Saran(
-      namaPelanggan: 'John Doe',
-      saran: 'Peningkatan kualitas produk sangat diperlukan.'),
-  Saran(
-      namaPelanggan: 'Jane Smith',
-      saran: 'Pelayanan pelanggan perlu ditingkatkan.'),
-  Saran(
-      namaPelanggan: 'Alex Johnson',
-      saran: 'Produk yang ditawarkan sudah sangat baik.'),
-  Saran(
-      namaPelanggan: 'Emily Davis', saran: 'Harap memperluas variasi produk.'),
-];
+class _SaranListState extends State<SaranList> {
+  void initState() {
+    super.initState();
+    context.read<SaranBloc>().add(const GetSaranEvent());
+  }
 
-class SaranList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,20 +25,33 @@ class SaranList extends StatelessWidget {
         backgroundColor: const Color(0xFF22692D),
       ),
       drawer: Sidebar(),
-      body: ListView.builder(
-        itemCount: daftarSaran.length,
-        itemBuilder: (context, index) {
-          final saran = daftarSaran[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            elevation: 3,
-            child: ListTile(
-              title: Text(
-                saran.namaPelanggan,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(saran.saran),
-            ),
+      body: BlocBuilder<SaranBloc, SaranState>(
+        builder: (context, state) {
+          List data = [];
+          if (state is SaranLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is SaranSuccesd) {
+            data = state.data;
+          }
+          return ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final saran = data[index];
+              return Card(
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                elevation: 3,
+                child: ListTile(
+                  title: Text(
+                    saran['nama_pembeli'] ?? '',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(saran['saran']),
+                ),
+              );
+            },
           );
         },
       ),

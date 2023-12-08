@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solusi_penjualan_pangan/bloc/store/store_bloc.dart';
 import 'package:solusi_penjualan_pangan/model/toko.dart';
-import 'package:solusi_penjualan_pangan/page/checkout.dart';
 import 'package:solusi_penjualan_pangan/page/hamalan_toko.dart';
 import 'package:solusi_penjualan_pangan/page/widget/sidebar.dart';
 
@@ -14,19 +13,19 @@ class HomePembeli extends StatefulWidget {
 class _HomePembeliState extends State<HomePembeli> {
   final List<Map<String, dynamic>> topItems = [
     {
-      'name': 'sate',
+      'name': 'donat',
       'image':
-          'https://asset.kompas.com/crops/FDAcmidsNYJDL80i55bj7pbXqyk=/95x0:939x563/750x500/data/photo/2022/07/10/62ca309364500.jpeg'
+          'https://img.kurio.network/xICgRXknzD91eylETkDBDuvkD5k=/1200x1200/filters:quality(80)/https://kurio-img.kurioapps.com/22/07/26/593c9c0d-27ee-4c68-b98d-5dfb68aa30a2.jpg'
     },
     {
-      'name': 'soto',
+      'name': 'serabi',
       'image':
-          'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/17043644/Praktis-dan-Simpel-Ini-Resep-Soto-Ayam-Lamongan-yang-Menggugah-Selera-.jpg.webp'
+          'https://paxelmarket.co/wp-content/uploads/2022/04/WhatsApp-Image-2022-05-12-at-1.18.31-PM-1.jpeg'
     },
     {
-      'name': 'bakso',
+      'name': 'roti goreng',
       'image':
-          'https://awsimages.detik.net.id/community/media/visual/2023/03/29/mantap-ini-5-bakso-gepeng-enak-berkuah-gurih-segar-buat-buka-puasa-3_43.png?w=600&q=90'
+          'https://img-global.cpcdn.com/recipes/3ab7412e338f9da5/680x482cq70/roti-goreng-terenak-yg-pernah-sy-makan-foto-resep-utama.jpg'
     },
   ];
 

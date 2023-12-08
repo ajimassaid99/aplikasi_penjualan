@@ -6,7 +6,7 @@ import 'package:solusi_penjualan_pangan/page/home_penjual.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:solusi_penjualan_pangan/page/pesan_masuk.dart';
 import 'package:solusi_penjualan_pangan/page/pesanan.dart';
-import 'package:solusi_penjualan_pangan/page/riwayat_pesanan.dart';
+import 'package:solusi_penjualan_pangan/page/riwayat_pesanan_penjual.dart';
 import 'package:solusi_penjualan_pangan/page/saran.dart';
 import 'package:solusi_penjualan_pangan/page/welcome.dart';
 
@@ -119,11 +119,7 @@ class _DashboardPenjualPageState extends State<DashboardPenjualPage> {
     return [
       const HomePenjual(),
       PesananList(),
-      PesananMasukNotification(
-        jenisPembayaran: 'RP 2000000',
-        jumlahPesanan: 2,
-        onProses: () {},
-      ),
+      PesananListRiwayat(),
       SaranList()
     ];
   }

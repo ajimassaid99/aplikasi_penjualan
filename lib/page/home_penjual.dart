@@ -4,7 +4,6 @@ import 'package:shimmer/shimmer.dart';
 import 'package:solusi_penjualan_pangan/bloc/tambah_product/tambah_produk_bloc.dart';
 import 'package:solusi_penjualan_pangan/model/produk.dart';
 import 'package:solusi_penjualan_pangan/page/tambah_produk.dart';
-import 'package:solusi_penjualan_pangan/page/widget/header.dart';
 import 'package:solusi_penjualan_pangan/page/widget/product_card.dart';
 import 'package:solusi_penjualan_pangan/page/widget/product_item_shimmer.dart';
 import 'package:solusi_penjualan_pangan/page/widget/sidebar.dart';
@@ -20,7 +19,7 @@ class _HomePenjualState extends State<HomePenjual> {
   @override
   void initState() {
     super.initState();
-    context.read<TambahProdukBloc>().add(const LoadProdukEvent(tokoId: "3"));
+    context.read<TambahProdukBloc>().add(const LoadProdukEvent());
   }
 
   @override

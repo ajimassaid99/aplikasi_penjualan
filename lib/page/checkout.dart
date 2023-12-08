@@ -7,8 +7,9 @@ import 'package:solusi_penjualan_pangan/model/produkget.dart';
 import 'package:solusi_penjualan_pangan/page/pesanan_berhasil.dart';
 
 class CheckoutPage extends StatefulWidget {
+  final int toko_id;
   const CheckoutPage({
-    Key? key,
+    Key? key, required this.toko_id
   }) : super(key: key);
 
   @override
@@ -178,7 +179,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       context.read<KeranjangBloc>().add(Pesan(
                           metode: "Tunai",
                           jumlah_bayar: subtotal.toInt(),
-                          data: cart));
+                          data: cart,
+                          tokoId: widget.toko_id
+                          ));
                     },
                     child: const Text('Beli Sekarang'),
                   ),
